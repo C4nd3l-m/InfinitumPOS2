@@ -1,4 +1,4 @@
-interface IAppointmentDto{
+interface ISaleDto{
     date: Date,
     time: string,
     userId: number,
@@ -6,4 +6,4 @@ interface IAppointmentDto{
     status: string
 }
 
-export default IAppointmentDto;
+export default ISaleDto;

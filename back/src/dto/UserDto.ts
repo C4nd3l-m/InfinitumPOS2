@@ -1,10 +1,9 @@
-import IAppointmentDto from "./AppointmenDto";
+import ISaleDto from "./SaleDto";
 
 export interface UserRegisterDto {
     name: string;
     email: string;
     birthDate: string;
-    nDni: number;
     username: string; 
     password: string; 
 
@@ -25,7 +24,6 @@ export interface UserDataLoginDto{
     name?: string;
     email?: string;
     birthDate?: Date;
-    nDni?: number;
     credentialId: number | undefined
 }
 
@@ -44,8 +42,7 @@ export interface UserDataDto{
     name?: string;
     email?: string;
     birthDate?: Date;
-    nDni?: number;
-    appointments?: IAppointmentDto[]
+    sales?: ISaleDto[]
 }
 
 export interface CreatedUserResponseDto {

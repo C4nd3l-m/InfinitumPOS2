@@ -3,7 +3,6 @@ interface IUser {
     name:string,
     email:string,
     birthDate: Date,
-    nDni: number,
     credentialsId: number
 }
 

@@ -28,4 +28,7 @@ export class Sale {
 
     @OneToMany(() => SaleDetail, (saleDetail) => saleDetail.sale, { cascade: true })
     saleDetails: SaleDetail[];
+
+    @Column({ type: "enum", enum: ["pending", "completed", "canceled"], default: "pending" })
+    status: "completed" | "canceled";
 }
