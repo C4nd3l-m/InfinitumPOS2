@@ -2,12 +2,12 @@ import { UserDataDto, UserRegisterDto, UserCLoginDto, UserLoginDto } from "../dt
 import UserRepository from "../repositories/UserRepository"
 
 import { User } from "../entities/User.entity"
-import { checkUserCredentials, getCredentialsService } from "./credentialsService"
+import { checkUserCredentials, getCredentialService } from "./credentialsService"
 import { AppDataSource } from "../config/data-source";
 import { Credential } from "../entities/Credentials.entity";
 
 
-export const getUserService = async (id: number): Promise<UserDataDto> => {
+export const getUserByIdService = async (id: number): Promise<UserDataDto> => {
     const userFound = await UserRepository.findOne({
         where: { id },
         relations: ["credentials", "sales", "sales.saleDetails", "sales.saleDetails.product"] 
@@ -24,19 +24,26 @@ export const getUserService = async (id: number): Promise<UserDataDto> => {
             date: sale.date,
             time: sale.time,
             userId: sale.user.id,
-            description: sale.saleDetails.map(detail => `${detail.quantity}x ${detail.product.name}`).join(", "),
             paymentMethod: sale.paymentMethod,
             totalPrice: sale.totalPrice,
             totalProfit: sale.totalProfit,
-            status: sale.status
+            status: sale.status,
+            saleDetails: sale.saleDetails.map(detail => ({
+                productId: detail.product.id,
+                quantity: detail.quantity,
+                unitPrice: detail.unitPrice,
+                subtotal: detail.subtotal,
+                profit: detail.profit
+            }))
         }))
     };
+    
 };
 
 
 export const createUserService = async (user: UserRegisterDto): Promise<User> => {
     const result = await AppDataSource.transaction(async (entityManager) => {
-        const userCredentials: Credential | undefined = await getCredentialsService(entityManager, user.username, user.password)
+        const userCredentials: Credential | undefined = await getCredentialService(entityManager, user.username, user.password)
         console.log("Credentials created");
         const newUser: User = entityManager.create(User, {
             name: user.name,

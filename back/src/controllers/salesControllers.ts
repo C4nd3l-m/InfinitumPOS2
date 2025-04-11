@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { createSaleService } from "../services/salesService"
-import { getSalesService, getSalesByIdService, cancelSaleService } from "../services/salesService";
+import { getSalesService, getSaleByIdService, cancelSaleService } from "../services/salesService";
 import SaleDto from "../dto/SaleDto"
 import { error } from "console";
-
+import { Sale } from "../entities/Sale.entity";
 
 export const getSalesController = async (req: Request, res: Response) => {
     try {
@@ -20,7 +20,7 @@ export const getSalesByUserIdController = async (req: Request<{ id: string }>, r
     const { id } = req.params;
 
     try {
-        const serviceResponse = await getSalesByIdService(parseInt(id, 10))
+        const serviceResponse = await getSaleByIdService(parseInt(id, 10))
         res.status(200).json({
             data: serviceResponse
         })
@@ -34,7 +34,7 @@ export const getSalesByUserIdController = async (req: Request<{ id: string }>, r
 
 export const postSaleController = async (req: Request<unknown, unknown, SaleDto>, res: Response) => {
     try {
-        const serviceResponse: SaleDto = await createSaleService(req.body)
+        const serviceResponse: Sale = await createSaleService(req.body);
         res.status(201).json({
             data: serviceResponse
         })

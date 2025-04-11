@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
-//import { createUserService, getUserByIdService} from "../services/userService"
 
-import { UserLoginDto, UserDto, UserRegisterDto } from "../dto/UserDto";
-import { loginUserService } from "../services/userService"
+import { UserLoginDto, UserCLoginDto, UserRegisterDto } from "../dto/UserDto";
+import { loginUserService } from "../services/usersService"
 import { User } from "../entities/User.entity";
-
+import {getUserByIdService, createUserService} from "../services/usersService"
 export const getUserByIdController = async (req: Request<{id: string}>, res: Response): Promise<void> =>{
     
     const { id } = req.params;
@@ -27,7 +26,7 @@ export const getUserByIdController = async (req: Request<{id: string}>, res: Res
 
 export const userRegisterController = async (req: Request<unknown, unknown, UserRegisterDto>, res: Response): Promise<void> =>{
     try{
-        const serviceResponse = User = await createUserService(req.body)
+        const serviceResponse: User = await createUserService(req.body)
         res.status(201).json({
             message: "User registered successfully",
             data: serviceResponse
@@ -42,7 +41,7 @@ export const userRegisterController = async (req: Request<unknown, unknown, User
 
 export const userLoginController = async (req: Request<unknown, unknown, UserLoginDto>, res: Response): Promise<void> =>{
     try{
-        const serviceResponse: UserLoginDto = await loginUserService(req.body);
+        const serviceResponse: UserCLoginDto = await loginUserService(req.body);
         res.status(200).json(serviceResponse)
     } catch(error){
         console.error(error)

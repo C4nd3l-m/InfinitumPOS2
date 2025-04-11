@@ -1,6 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { User } from "./User.entity";
 import { SaleDetail } from "./SaleDetail.entity";
+import { SaleStatus } from "../enums/SaleStatus";
 
 @Entity({ name: "sales" })
 export class Sale {
@@ -29,6 +30,11 @@ export class Sale {
     @OneToMany(() => SaleDetail, (saleDetail) => saleDetail.sale, { cascade: true })
     saleDetails: SaleDetail[];
 
-    @Column({ type: "enum", enum: ["pending", "completed", "canceled"], default: "pending" })
-    status: "completed" | "canceled";
+    @Column({
+        type: "enum",
+        enum: SaleStatus,
+        default: SaleStatus.Completed,
+    })
+    status: SaleStatus;
+
 }

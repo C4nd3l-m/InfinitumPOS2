@@ -13,6 +13,7 @@ exports.Sale = void 0;
 const typeorm_1 = require("typeorm");
 const User_entity_1 = require("./User.entity");
 const SaleDetail_entity_1 = require("./SaleDetail.entity");
+const SaleStatus_1 = require("../enums/SaleStatus");
 let Sale = class Sale {
 };
 exports.Sale = Sale;
@@ -49,6 +50,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => SaleDetail_entity_1.SaleDetail, (saleDetail) => saleDetail.sale, { cascade: true }),
     __metadata("design:type", Array)
 ], Sale.prototype, "saleDetails", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "enum", enum: ["Completed", "Cancelled"], default: "completed" }),
+    __metadata("design:type", String)
+], Sale.prototype, "status", void 0);
 exports.Sale = Sale = __decorate([
     (0, typeorm_1.Entity)({ name: "sales" })
 ], Sale);
