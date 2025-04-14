@@ -11,11 +11,13 @@ export const AppDataSource = new DataSource({
     username: DB_USER,
     password: DB_PASSWORD,
     database: DB_NAME,
+    ssl: {
+        rejectUnauthorized: false,
+    },
     synchronize: DB_SYNC,
     logging: DB_LOGGING,
     entities: ["dist/entities/**/*.js"],
     dropSchema: DB_DROP,
     subscribers: [],
     migrations: [],
-    ssl: true
 }) 
