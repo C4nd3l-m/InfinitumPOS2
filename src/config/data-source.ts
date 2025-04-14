@@ -13,8 +13,9 @@ export const AppDataSource = new DataSource({
     database: DB_NAME,
     synchronize: DB_SYNC,
     logging: DB_LOGGING,
-    entities: ["src/entities/**/*.ts"],
+    entities: ["dist/entities/**/*.js"],
     dropSchema: DB_DROP,
     subscribers: [],
     migrations: [],
+    ssl: true
 }) 

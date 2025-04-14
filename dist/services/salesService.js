@@ -40,7 +40,7 @@ const createSaleService = (saleData) => __awaiter(void 0, void 0, void 0, functi
     if (!user) {
         throw new Error("User not found");
     }
-    const statusMapped = saleData.status === "completed"
+    const statusMapped = saleData.status === SaleStatus_1.SaleStatus.Completed
         ? SaleStatus_1.SaleStatus.Completed
         : SaleStatus_1.SaleStatus.Cancelled;
     const saleToCreate = {

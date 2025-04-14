@@ -51,7 +51,11 @@ __decorate([
     __metadata("design:type", Array)
 ], Sale.prototype, "saleDetails", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "enum", enum: ["Completed", "Cancelled"], default: "completed" }),
+    (0, typeorm_1.Column)({
+        type: "enum",
+        enum: SaleStatus_1.SaleStatus,
+        default: SaleStatus_1.SaleStatus.Completed,
+    }),
     __metadata("design:type", String)
 ], Sale.prototype, "status", void 0);
 exports.Sale = Sale = __decorate([

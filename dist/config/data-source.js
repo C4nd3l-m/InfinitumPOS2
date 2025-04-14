@@ -47,8 +47,9 @@ exports.AppDataSource = new typeorm_1.DataSource({
     database: envs_1.DB_NAME,
     synchronize: envs_1.DB_SYNC,
     logging: envs_1.DB_LOGGING,
-    entities: ["src/entities/**/*.ts"],
+    entities: ["dist/entities/**/*.js"],
     dropSchema: envs_1.DB_DROP,
     subscribers: [],
     migrations: [],
+    ssl: true
 });
