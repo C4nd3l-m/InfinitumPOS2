@@ -9,12 +9,12 @@ export interface UserRegisterDto {
 
 }
 
-export interface UserLoginDto{ //userCredential
+export interface UserLoginDto{ 
     username: string, 
     password: string
 }
 
-export interface UserCLoginDto{ //userLogin
+export interface UserCLoginDto{
     login: boolean,
     user: UserDataLoginDto
 }

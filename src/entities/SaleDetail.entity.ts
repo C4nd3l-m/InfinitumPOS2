@@ -23,8 +23,8 @@ export class SaleDetail {
     unitPrice: number;
 
     @Column({ type: "decimal", precision: 10, scale: 2, nullable: false })
-    subtotal: number; // unitPrice * quantity
+    subtotal: number;
 
     @Column({ type: "decimal", precision: 10, scale: 2, nullable: false })
-    profit: number; // Ganancia del producto vendido
+    profit: number; 
 }
