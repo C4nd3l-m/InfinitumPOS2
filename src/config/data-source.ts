@@ -17,9 +17,10 @@ export const AppDataSource = new DataSource({
     synchronize: DB_SYNC,
     logging: DB_LOGGING,
     entities: [__dirname + "/../entities/**/*.{ts,js}"],
-
+    
 
     dropSchema: DB_DROP,
     subscribers: [],
     migrations: [],
 }) 
+console.log("Entidades cargadas:", AppDataSource.options.entities);
