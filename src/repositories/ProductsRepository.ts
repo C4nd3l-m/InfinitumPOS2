@@ -1,6 +1,9 @@
-
+import { Repository } from "typeorm";
 import { AppDataSource } from "../config/data-source";
 import { SaleDetail } from "../entities/SaleDetail.entity";
+import { Product } from "../entities/Products.entity";
+
+export const ProductRepository: Repository<Product>  = AppDataSource.getRepository(Product);
 
 export const getTopSellingProducts = async (limit = 10) => {
     const saleRepo = AppDataSource.getRepository(SaleDetail);
@@ -19,7 +22,5 @@ export const getTopSellingProducts = async (limit = 10) => {
     "totalSold" DESC
   LIMIT $1
 `, [limit]);
-
-
 
 };
