@@ -18,6 +18,7 @@ export const getProductsController = async (req: Request, res: Response) => {
 }
 
 export const postProductController = async (req: Request, res: Response) => {
+    console.log("BODY:", req.body);
     try {
         const productData = req.body;
         const newProduct = await postProductService(productData);
@@ -26,9 +27,10 @@ export const postProductController = async (req: Request, res: Response) => {
         });
     }
     catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Internal server error" });
-    }
+    console.error("Error en postProductController:", error);
+    res.status(500).json({ error: "Internal server error" });
+}
+
 }
 
 export const deleteProductController = async (req: Request, res: Response) =>{
